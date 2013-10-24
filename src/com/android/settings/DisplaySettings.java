@@ -103,6 +103,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
     private static final String KEY_SCREEN_COLOR_SETTINGS = "screencolor_settings";
 
+    private static final String KEY_ADVANCED_DISPLAY_SETTINGS = "advanced_display_settings";
+
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
     private FontDialogPreference mFontSizePref;
@@ -217,6 +219,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             calibrationPrefs.removePreference(mColorEnhancement);
             mColorEnhancement = null;
         }
+
+        Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
+                getPreferenceScreen(), KEY_ADVANCED_DISPLAY_SETTINGS);
 
         if (calibrationPrefs != null && !DisplayColor.isSupported()) {
             Preference colorPref = findPreference(KEY_DISPLAY_COLOR);
